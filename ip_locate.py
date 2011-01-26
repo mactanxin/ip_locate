@@ -32,11 +32,10 @@ def get_correct_fommat(info,ip_address):
 # get prov/city info from dict
 def get_correct_formmat_province(info,ip_address):
     for i in dict_file:
-        if info in i:
-            data = i.split('|')[:4]
-            if info in data and data[2]==data[3]:
-                new_full = "%s|%s|%s|%s|%s" %(ip_address,data[3],data[2],data[0],data[1])
-    return new_full            
+        data = i.split('|')[:4]
+        if data[0] in info and data[2]==data[3]:
+            new_full = "%s|%s|%s|%s|%s" %(ip_address,data[3],data[2],data[0],data[1])
+    return new_full              
 def get_location_info_from_nodist(address_string,ip_address):
     b = str(address_string).strip().split("：")[1].split(" ")[0]
     p = b.strip()
