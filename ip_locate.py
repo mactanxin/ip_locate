@@ -37,28 +37,17 @@ def get_correct_formmat_province(info,ip_address):
             if info in data and data[2]==data[3]:
                 new_full = "%s|%s|%s|%s|%s" %(ip_address,data[3],data[2],data[0],data[1])
     return new_full            
-        
 def get_location_info_from_nodist(address_string,ip_address):
     b = str(address_string).strip().split("：")[1].split(" ")[0]
-    if '省' in b and '市' not in b:
+    p = b.strip()
+    try:
         try:
-            p = b.strip()
+            x_info = get_correct_fommat(p,ip_address)
+        except:
             x_info = get_correct_formmat_province(p,ip_address)
-        except:
-            pass    
-    elif '省' in b and '市' in b:
-        try:
-            p = b.split("省")[1].split("市")[0]
-            x_info = get_correct_fommat(p,ip_address)
-        except:
-            pass                
-    elif '省' not in b and '市' in b:
-        try:
-            p = b.split('市')[0]
-            x_info = get_correct_fommat(p,ip_address)
-        except:
-            pass                            
-    return x_info   
+    except:
+        pass
+    return x_info
 
 def get_ip_locate(ip_address):
     errf = open(err_output_file,'a')
